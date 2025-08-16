@@ -6,6 +6,7 @@ This project uses **Terraform** to provision AWS infrastructure for the VW Chall
 
 ## 📁 Project Structure
 
+```
 ├── main/ # Main TF entrypoint
 ├── networking/ # VPC, subnets, route tables
 ├── rds/ # PostgreSQL DB setup (RDS)
@@ -15,7 +16,7 @@ This project uses **Terraform** to provision AWS infrastructure for the VW Chall
 ├── s3/ # S3 bucket for storing event count from lambda 'lambda_to_s3'
 ├── .github/workflows/ # GitHub Actions for CI/CD
 └── README.md
-
+```
 ---
 
 
