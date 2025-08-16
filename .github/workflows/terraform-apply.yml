@@ -26,11 +26,12 @@ jobs:
 
       - name: Terraform Init
         run: terraform init
+        working-directory: ./main 
 
       - name: Terraform Plan
         run: terraform plan
+        working-directory: ./main 
 
       - name: Terraform Apply
         run: terraform apply -auto-approve
-        env:
-          TF_VAR_secret_token: ${{ secrets.API_SECRET_TOKEN }}  # example var if needed
+        working-directory: ./main 
