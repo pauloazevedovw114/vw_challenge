@@ -1,6 +1,6 @@
 # 🚀 Infrastructure for VW Challenge
 
-This project uses **Terraform** to provision AWS infrastructure for the VW Challenge application.
+This project uses **Terraform** to provision AWS infrastructure for the VW Challenge application
 
 ---
 
@@ -25,7 +25,7 @@ This project uses **Terraform** to provision AWS infrastructure for the VW Chall
 - [Terraform](https://developer.hashicorp.com/terraform/downloads) >= 1.3.0
 - [aws-cli](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html)
 - Create user with IAM credentials and access to: Lambda, RDS, S3, API Gateway, VPC, Secrets Manager
-- Run ```aws configure``` and you'll be prompted for aws_access_key_id and your aws_secret_access_key.
+- Run ```aws configure``` and you'll be prompted for aws_access_key_id and your aws_secret_access_key
 
 ---
 
@@ -51,12 +51,12 @@ The workflow will:
 ---
 ## How to test API
 
-Once the infrastructure is deployed and the API Gateway is created, you can send events to the endpoint.
+Once the infrastructure is deployed and the API Gateway is created, you can send events to the endpoint
 
 🔐 Authentication
 
-The API is protected using an API Key, which is stored securely in AWS Secrets Manager.
-To retrieve it go to AWS Console -> ASecrets Manager -> ALook for your secret (e.g., vw-challenge/api-token) -> AReveal or copy the value.
+The API is protected using an API Key, which is stored securely in AWS Secrets Manager
+To retrieve it go to AWS Console -> Secrets Manager -> vw-challenge/vwdb-rds-password -> Retrieve key value
 
 
 📬 Example Request
