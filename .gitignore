@@ -1,0 +1,23 @@
+# Ignore Terraform state files and backups
+*.tfstate
+*.tfstate.*
+.terraform/
+.terraform.lock.hcl
+
+# Ignore local exec build output
+lambda_build/
+lambda.zip
+
+# Ignore IDE/editor files
+.vscode/
+.idea/
+*.swp
+.DS_Store
+
+# Ignore Python cache files
+__pycache__/
+*.pyc
+
+# Ignore any secrets or credentials files if you have them
+*.pem
+*.key

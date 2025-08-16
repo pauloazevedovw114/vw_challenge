@@ -23,6 +23,7 @@ def insert_event(event_type, timestamp):
     print(f"Fetching DB credentials from secret: {secret_arn}")
     
     username, password = get_db_credentials(secret_arn)
+    print(username, password)
     print("Credentials retrieved. Attempting DB connection...")
 
     

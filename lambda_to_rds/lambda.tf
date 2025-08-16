@@ -84,9 +84,9 @@ resource "null_resource" "pip_install" {
     EOT
   }
 
-  #triggers = {
-  #  always_run = timestamp()
-  #}
+  triggers = {
+    always_run = timestamp()
+  }
 }#
 
 data "archive_file" "lambda_package" {
