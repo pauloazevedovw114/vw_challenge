@@ -1,8 +1,13 @@
-# 🚀 Infrastructure for VW Challenge
+# 🛠️ Infrastructure for VW Challenge
 
 This project uses **Terraform** to provision AWS infrastructure for the VW Challenge application
 
 ---
+
+## 🏛️ Architecture Diagram
+
+
+![Architecture Diagram](aws infra.png)
 
 ## 📁 Project Structure
 
@@ -29,7 +34,7 @@ This project uses **Terraform** to provision AWS infrastructure for the VW Chall
 
 ---
 
-## 🚀 Deploying Infrastructure via GH Actions
+## 🤖 Deploying Infrastructure via GH Actions
 
 Steps:
 
@@ -49,7 +54,8 @@ The workflow will:
 - Run terraform init, plan and apply
 
 ---
-## How to test API
+
+## 🔌 How to test API
 
 Once the infrastructure is deployed and the API Gateway is created, you can send events to the endpoint
 
@@ -58,8 +64,7 @@ Once the infrastructure is deployed and the API Gateway is created, you can send
 The API is protected using an API Key, which is stored securely in AWS Secrets Manager
 To retrieve it go to AWS Console -> Secrets Manager -> vw-challenge/vwdb-rds-password -> Retrieve key value
 
-
-📬 Example Request
+Example Request:
 
 Use curl to send a POST request with the required headers and payload:
 
