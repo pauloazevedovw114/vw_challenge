@@ -7,7 +7,7 @@ This project uses **Terraform** to provision AWS infrastructure for the VW Chall
 ## 🏛️ Architecture Diagram
 
 
-![Architecture Diagram](aws infra.png)
+![Architecture Diagram](aws_infra.png)
 
 ## 📁 Project Structure
 
