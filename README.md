@@ -29,42 +29,50 @@ This project uses **Terraform** to provision AWS infrastructure for the VW Chall
 
 ---
 
-## 🔐 Secrets Setup
+## 🚀 Deploying Infrastructure via GH Actions
 
-Set the following **GitHub secrets** in your repo:
+Steps:
+
+1- Create the following **GitHub secrets** in repo Settings -> Secrets and Variables -> Actions:
 
 | Secret Name              | Purpose                     |
 |--------------------------|-----------------------------|
 | `AWS_ACCESS_KEY_ID`      | AWS access key              |
 | `AWS_SECRET_ACCESS_KEY`  | AWS secret key              |
 
----
 
-## 🚀 Deploying Infrastructure (Locally)
+2- Go to GitHub -> Actions -> Terraform Apply-> Run Workflow
+
+The workflow will:
+- Install Terraform CLI (v1.12.2)
+- Configure AWS Credentials
+- Run terraform init, plan and apply
+
+---
+## How to test API
+
+Once the infrastructure is deployed and the API Gateway is created, you can send events to the endpoint.
+
+🔐 Authentication
+
+The API is protected using an API Key, which is stored securely in AWS Secrets Manager.
+To retrieve it go to AWS Console -> ASecrets Manager -> ALook for your secret (e.g., vw-challenge/api-token) -> AReveal or copy the value.
+
+
+📬 Example Request
+
+Use curl to send a POST request with the required headers and payload:
 
 ```bash
-cd main/
-terraform init
-terraform plan
-terraform apply
-
----
-## 🚦 Manual Deploy via GitHub Actions
-
-Go to GitHub → Actions → Manual Terraform Apply → Run Workflow → Pick your branch → ✅ Done.
-
-This will:
-
-Run terraform plan
-
-Wait for manual approval (if you configured environments)
-
-Apply infra in AWS
----
-## Test API
-
-curl -X POST \
-  https://<your-api-id>.execute-api.eu-central-1.amazonaws.com/data \
+curl -X POST https://<api-gateway-id>.execute-api.eu-central-1.amazonaws.com/data \
   -H "Content-Type: application/json" \
   -H "x-api-key: YOUR_API_KEY" \
-  -d '{"event_type":"login","timestamp":"2025-08-16T16:00:00Z"}'
+  -d '{
+        "event_type": "login",
+        "timestamp": "2025-08-16T16:00:00Z"
+      }'
+```
+
+Note:
+Replace <api-gateway-id> with ID available in UI menu: API Gateway -> APIs
+
