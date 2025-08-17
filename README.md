@@ -1,4 +1,4 @@
-# 🛠️ Infrastructure for VW Challenge
+<img width="762" height="930" alt="image" src="https://github.com/user-attachments/assets/ebcbe59b-c060-4990-bac1-f5d2af11c6f6" /># 🛠️ Infrastructure for VW Challenge
 
 This project uses **Terraform** to provision AWS infrastructure for the VW Challenge application
 
@@ -31,7 +31,12 @@ This project uses **Terraform** to provision AWS infrastructure for the VW Chall
 - [aws-cli](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html)
 - Create user with IAM credentials and access to: Lambda, RDS, S3, API Gateway, VPC, Secrets Manager
 - Run ```aws configure``` and you'll be prompted for aws_access_key_id and your aws_secret_access_key
-
+```bash
+cd main
+terraform init
+terraform plan
+terraform apply
+```
 ---
 
 ## 🤖 Deploying Infrastructure via GH Actions
