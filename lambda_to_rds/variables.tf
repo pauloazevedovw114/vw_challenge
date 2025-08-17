@@ -12,12 +12,12 @@ variable "vpc_id" {
   type        = string
 }
 
-variable "subnet_ids" {
+variable "private_subnet_ids" {
   description = "List of private subnet IDs for RDS"
   type        = list(string)
 }
 
-variable "lambda_sg_id" {
+variable "lambda_to_rds_sg_id" {
   description = "Security Group ID that allows Lambda to connect to RDS"
   type        = string
 }

@@ -7,7 +7,7 @@ resource "aws_security_group" "rds_sg" {
     from_port                = 5432
     to_port                  = 5432
     protocol                 = "tcp"
-    security_groups          = [var.lambda_sg_id, var.lambda_s3_sg_id]  # allow from Lambda SG
+    security_groups          = [var.lambda_to_rds_sg_id, var.lambda_s3_sg_id]  # allow from Lambdas SG
   }
 
   egress {
@@ -18,9 +18,9 @@ resource "aws_security_group" "rds_sg" {
   }
 }
 
-resource "aws_db_subnet_group" "default" {
-  name       = "rds-subnet-group"
-  subnet_ids = var.subnet_ids
+resource "aws_db_subnet_group" "rds_subnet_group" {
+  name               = "rds-subnet-group"
+  subnet_ids         = var.private_subnet_ids
 }
 
 resource "random_password" "rds_password" {
@@ -44,7 +44,7 @@ resource "aws_db_instance" "vw-challenge-events" {
   skip_final_snapshot = true
   publicly_accessible = false
   vpc_security_group_ids = [aws_security_group.rds_sg.id]
-  db_subnet_group_name   = aws_db_subnet_group.default.name
+  db_subnet_group_name   = aws_db_subnet_group.rds_subnet_group.name
   
   tags = merge(
     var.tags
@@ -70,13 +70,13 @@ resource "aws_db_instance" "vw-challenge-events" {
 #      }
 #}
 
-resource "aws_secretsmanager_secret" "rds_password_secret" {
-  name = "vw-challenge/vwdb-rds-password"
+resource "aws_secretsmanager_secret" "rds_apigw_secret" {
+  name = "vw-challenge/secrets"
   description = "Password for the RDS instance and API GW Token"
 }
 
-resource "aws_secretsmanager_secret_version" "rds_password_secret_version" {
-  secret_id     = aws_secretsmanager_secret.rds_password_secret.id
+resource "aws_secretsmanager_secret_version" "rds_apigw_secret_version" {
+  secret_id     = aws_secretsmanager_secret.rds_apigw_secret.id
   secret_string = jsonencode({
     username = "vwadmin"
     password = random_password.rds_password.result

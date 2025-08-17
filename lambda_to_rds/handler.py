@@ -13,7 +13,6 @@ def get_db_credentials(secret_arn):
     return token
 
 def handler(event, context):
-    # Parse the JSON string in event["body"]
     body = json.loads(event["body"])
     event_type = body.get("event_type")
     timestamp = body.get("timestamp")
@@ -24,12 +23,10 @@ def handler(event, context):
             "body": "Missing event_type or timestamp"
         }
 
-    print("Starting insert_event...")
     secret_arn = os.environ["SECRET_ARN"]
-    print(f"Fetching API token from secret: {secret_arn}")
     
     token = get_db_credentials(secret_arn)
-    print("Credentials retrieved. Attempting DB connection...")
+
     headers = event.get("headers", {})
 
     if headers.get("x-api-key") != token:

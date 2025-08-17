@@ -9,8 +9,8 @@ module "rds" {
   aws_region           = var.aws_region
   tags                 = var.tags
   vpc_id               = module.networking.vpc_id
-  subnet_ids           = module.networking.private_subnet_ids
-  lambda_sg_id         = module.lambda_to_rds.lambda_sg_id
+  private_subnet_ids   = module.networking.private_subnet_ids
+  lambda_to_rds_sg_id  = module.lambda_to_rds.lambda_to_rds_sg_id
   lambda_s3_sg_id      = module.lambda_to_s3.lambda_s3_sg_id
   
 }
@@ -20,11 +20,11 @@ module "lambda_to_rds" {
   aws_region           = var.aws_region
   tags                 = var.tags  
   vpc_id               = module.networking.vpc_id
-  subnet_ids           = module.networking.private_subnet_ids
-  lambda_sg_id         = module.lambda_to_rds.lambda_sg_id
+  private_subnet_ids   = module.networking.private_subnet_ids
+  lambda_to_rds_sg_id  = module.lambda_to_rds.lambda_to_rds_sg_id
   db_address           = module.rds.db_address
   db_name              = "vwevents"
-  secret_arn           = module.rds.db_secret_arn
+  secret_arn           = module.rds.secret_arn
 }
 
 module "api_gateway" {
@@ -46,9 +46,9 @@ module "lambda_to_s3" {
   aws_region           = var.aws_region
   tags                 = var.tags  
   vpc_id               = module.networking.vpc_id
-  subnet_ids           = module.networking.private_subnet_ids
+  private_subnet_ids   = module.networking.private_subnet_ids
   lambda_s3_sg_id      = module.lambda_to_s3.lambda_s3_sg_id
   db_address           = module.rds.db_address
   db_name              = "vwevents"
-  secret_arn           = module.rds.db_secret_arn
+  secret_arn           = module.rds.secret_arn
 }

@@ -13,18 +13,17 @@ def get_db_credentials(secret_arn):
 
     username = secret["username"]
     password = secret["password"]
-    print(f"Connecting with user={username} to host={os.environ['DB_HOST']}")
+    #print(f"Connecting with user={username} to host={os.environ['DB_HOST']}")
 
     return username, password
 
 def insert_event(event_type, timestamp):
-    print("Starting insert_event...")
     secret_arn = os.environ["SECRET_ARN"]
-    print(f"Fetching DB credentials from secret: {secret_arn}")
+    #print(f"Fetching DB credentials from secret: {secret_arn}")
     
     username, password = get_db_credentials(secret_arn)
-    print(username, password)
-    print("Credentials retrieved. Attempting DB connection...")
+    #print(username, password)
+    #print("Credentials retrieved. Attempting DB connection...")
 
     
     conn = pg8000.native.Connection(
@@ -67,8 +66,7 @@ def insert_event(event_type, timestamp):
     
     rows = conn.run("SELECT id, event_type, timestamp FROM events")
     for row in rows:
-        print(row)
-    
+        print(row)   
 
     conn.close()
     return True

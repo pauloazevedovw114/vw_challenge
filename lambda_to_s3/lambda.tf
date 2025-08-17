@@ -114,7 +114,7 @@ resource "aws_lambda_function" "lambda_s3" {
   }
 
   vpc_config {
-    subnet_ids         = var.subnet_ids
+    subnet_ids = var.private_subnet_ids
     security_group_ids = [var.lambda_s3_sg_id]
   }
 

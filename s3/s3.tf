@@ -1,5 +1,5 @@
 resource "aws_s3_bucket" "vw_challenge_bucket" {
-  bucket = "vwchallengebucket"  # must be globally unique
+  bucket = "vwchallengebucket"
 
   tags = merge(
     var.tags
