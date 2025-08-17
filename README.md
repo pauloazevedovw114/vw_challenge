@@ -57,21 +57,21 @@ The workflow will:
 
 ## 🔌 How to test API
 
-Once the infrastructure is deployed and the API Gateway is created, you can send events to the endpoint
+Once the infrastructure is deployed and the API Gateway is created, you can send events to its endpoint
 
 🔐 Authentication
 
-The API is protected using an API Key, which is stored securely in AWS Secrets Manager
-To retrieve it go to AWS Console -> Secrets Manager -> vw-challenge/vwdb-rds-password -> Retrieve key value
+The API requires an API Key, which is stored securely in AWS Secrets Manager
+To retrieve it go to AWS Console -> Secrets Manager -> vw-challenge/secrets -> Retrieve key value
 
 Example Request:
 
-Use curl to send a POST request with the required headers and payload:
+Curl to send a POST request with the required headers and payload:
 
 ```bash
 curl -X POST https://<api-gateway-id>.execute-api.eu-central-1.amazonaws.com/data \
   -H "Content-Type: application/json" \
-  -H "x-api-key: YOUR_API_KEY" \
+  -H "x-api-key: API_KEY" \
   -d '{
         "event_type": "login",
         "timestamp": "2025-08-16T16:00:00Z"
