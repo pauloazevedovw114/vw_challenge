@@ -31,7 +31,7 @@ This project uses **Terraform** to provision AWS infrastructure for the VW Chall
 - [aws-cli](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html)
 - Create user with IAM credentials and access to: Lambda, RDS, S3, API Gateway, VPC, Secrets Manager
 - Run ```aws configure``` and you'll be prompted for aws_access_key_id and your aws_secret_access_key
-- CD into main folder to apply TF code:
+- Apply the Terraform code from the main folder:
 ```bash
 cd main
 terraform init
