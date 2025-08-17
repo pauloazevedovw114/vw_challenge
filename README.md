@@ -1,4 +1,4 @@
-<img width="762" height="930" alt="image" src="https://github.com/user-attachments/assets/ebcbe59b-c060-4990-bac1-f5d2af11c6f6" /># 🛠️ Infrastructure for VW Challenge
+🛠️ Infrastructure for VW Challenge
 
 This project uses **Terraform** to provision AWS infrastructure for the VW Challenge application
 
